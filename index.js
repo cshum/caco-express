@@ -1,17 +1,17 @@
 var caco = require('caco')
 
 /**
- * caco generator function wrapper for express middleware
+ * Express middleware wrapper using caco generator function
  *
  * @param {...function*} genFn - generator function
  * @returns {function} express middleware function
  */
-module.exports = function mw (genFn) {
+module.exports = function wrap (genFn) {
   // return array if over 1 args of genFn
   var args = Array.prototype.slice.call(arguments)
   if (args.length > 1) {
     return args.map(function (genFn) {
-      return mw(genFn)
+      return wrap(genFn)
     })
   }
 

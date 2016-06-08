@@ -1,7 +1,7 @@
 {
   "name": "caco-express",
   "version": "0.0.1",
-  "description": "",
+  "description": "Express middleware wrapper using caco generator function",
   "scripts": {
     "test": "standard && node test.js"
   },

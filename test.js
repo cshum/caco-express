@@ -11,7 +11,7 @@ app.get('/foo', mw(function * (req, res, next) {
   }, 5)
   yield setTimeout(next, 10)
   next()
-}), mw(function * (req, res) {
+}, function * (req, res) {
   res.json({ foo: res.arr })
 }))
 

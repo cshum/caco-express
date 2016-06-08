@@ -1,10 +1,10 @@
 var test = require('tape')
 var express = require('express')
 var request = require('supertest')
-var mw = require('./')
+var wrap = require('./')
 
 var app = express()
-app.get('/foo', mw(function * (req, res, next) {
+app.get('/foo', wrap(function * (req, res, next) {
   res.arr = []
   setTimeout(function () {
     res.arr.push('bar')
@@ -15,17 +15,17 @@ app.get('/foo', mw(function * (req, res, next) {
   res.json({ foo: res.arr })
 }))
 
-app.get('/boom', mw(function * (req, res, next) {
+app.get('/boom', wrap(function * (req, res, next) {
   yield setTimeout(next, 0)
   throw new Error('boom')
 }))
 
-app.get('/689', mw(function * (req, res, next) {
+app.get('/689', wrap(function * (req, res, next) {
   next(new Error('169'))
   yield setTimeout(next, 0)
 }))
 
-app.use(mw(function * (err, req, res, next) {
+app.use(wrap(function * (err, req, res, next) {
   res.status(500)
   res.json({ success: false, message: err.message })
 }))

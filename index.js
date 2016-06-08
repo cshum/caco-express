@@ -8,9 +8,9 @@ var caco = require('caco')
  */
 module.exports = function (genFn) {
   var asyncFn = caco.wrap(genFn)
-  /* 
+  /*
    * - catch async error, callback to express next(err)
-   * - args.length 0 for explicitly calling next(), 
+   * - args.length 0 for explicitly calling next(),
    *   which should pass to next express middleware
    */
   if (genFn.length === 4) {

@@ -28,7 +28,7 @@ app.get('/foo', wrap(function * (req, res, next) {
 
   next() // calling next() passes to next middleware
 }, function * (req, res) {
-  res.send(data)
+  res.send(req.data)
 }))
 
 // 4 arguments for error handling middleware

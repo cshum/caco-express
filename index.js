@@ -1,7 +1,7 @@
-var caco = require('caco')
+var raco = require('raco')
 
 /**
- * Express middleware wrapper using caco generator function
+ * Express middleware wrapper using raco generator function
  *
  * @param {...function*} genFn - generator function
  * @returns {function} express middleware function
@@ -20,7 +20,7 @@ module.exports = function wrap (genFn) {
    * - args.length 0 for explicitly calling next(),
    *   which should pass to next express middleware
    */
-  var asyncFn = caco.wrap(genFn)
+  var asyncFn = raco.wrap(genFn)
   if (genFn.length === 4) {
     // 4 args, return express error handling middleware
     return function (err, req, res, next) {

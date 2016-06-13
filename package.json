@@ -1,13 +1,13 @@
 {
-  "name": "caco-express",
+  "name": "raco-express",
   "version": "1.0.0",
-  "description": "Express middleware wrapper using caco generator function",
+  "description": "Express middleware wrapper using raco generator function",
   "scripts": {
     "test": "standard && node test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:cshum/caco-express.git"
+    "url": "git@github.com:cshum/raco-express.git"
   },
   "author": "Adrian C Shum <adrian@cshum.com>",
   "license": "MIT",
@@ -18,6 +18,6 @@
     "tape": "^3.0.2"
   },
   "dependencies": {
-    "caco": "^2.0.3"
+    "raco": "^2.0.6"
   }
 }

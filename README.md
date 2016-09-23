@@ -27,9 +27,9 @@ app.get('/foo', wrap(function * (req, res, next) {
   yield setTimeout(next, 10)
 
   next() // calling next() passes to next middleware
-}, function * (req, res) {
+}), function (req, res) {
   res.send(req.data)
-}))
+})
 
 // 4 arguments for error handling middleware
 app.use(wrap(function * (err, req, res, next) {

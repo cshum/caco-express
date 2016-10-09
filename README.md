@@ -16,7 +16,8 @@ Calling `next()` without argument, passes control to the next middleware stack.
 
 ```js
 var express = require('express')
-var wrap = require('raco-express')
+var raco = require('raco')
+var wrap = require('raco-express')(raco)
 var fs = require('fs')
 
 var app = express()

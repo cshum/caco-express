@@ -2,7 +2,7 @@ var test = require('tape')
 var express = require('express')
 var request = require('supertest')
 var raco = require('raco')
-var wrap = require('./')
+var wrap = require('./')(raco)
 var wrapPrepend = require('./')(raco({ prepend: true }))
 
 var app = express()

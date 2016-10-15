@@ -5,7 +5,7 @@ Express middleware wrapper for [raco](https://github.com/cshum/raco) generator f
 [![Build Status](https://travis-ci.org/cshum/raco-express.svg?branch=master)](https://travis-ci.org/cshum/raco-express)
 
 ```bash
-npm install raco-express
+npm install raco raco-express
 ```
 
 This is a [raco](https://github.com/cshum/raco) version of [co-express](https://github.com/mciparelli/co-express), 

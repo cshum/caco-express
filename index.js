@@ -1,20 +1,11 @@
-var raco = require('raco')
-function isFn (fn) {
-  return typeof fn === 'function'
-}
-function isRaco (obj) {
-  return isFn(obj) && isFn(obj.wrap) && isFn(obj.wrapAll)
-}
-
 /**
  * Express middleware wrapper using raco generator function
  *
  * @param {...function*} genFn - generator function
  * @returns {function} express middleware function
  */
-module.exports = (function factory (raco) {
-  return function (genFn, opts) {
-    if (isRaco(genFn)) return factory(genFn)
+module.exports = function factory (raco) {
+  return function wrap (genFn, opts) {
     /*
      * - catch async error, callback to express next(err)
      * - args.length 0 for explicitly calling next(),
@@ -39,4 +30,4 @@ module.exports = (function factory (raco) {
       }
     }
   }
-})(raco)
+}

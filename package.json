@@ -1,6 +1,6 @@
 {
   "name": "raco-express",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Express middleware wrapper using raco generator function",
   "scripts": {
     "test": "standard && node test.js"
@@ -13,11 +13,10 @@
   "license": "MIT",
   "devDependencies": {
     "express": "^4.13.4",
+    "raco": "^3.2.0",
     "standard": "^6.0.8",
     "supertest": "^1.2.0",
     "tape": "^3.0.2"
   },
-  "dependencies": {
-    "raco": "^3.1.0"
-  }
+  "dependencies": {}
 }

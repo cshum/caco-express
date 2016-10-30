@@ -1,36 +1,34 @@
 var test = require('tape')
 var express = require('express')
 var request = require('supertest')
-var raco = require('raco')
-var wrap = require('./')(raco)
-var wrapPrepend = require('./')(raco({ prepend: true }))
+var wrap = require('./')
 
-var app = express()
-app.get('/foo', wrap(function * (req, res, next) {
+var app = wrap(express())
+app.get('/foo', function * (req, res, next) {
   res.arr = []
   setTimeout(function () {
     res.arr.push('bar')
   }, 5)
   yield setTimeout(next, 10)
   next()
-}), function (req, res) {
+}, function (req, res) {
   res.json({ foo: res.arr })
 })
 
-app.get('/boom', wrap(function * (req, res, next) {
+app.route('/boom').get(function * (req, res, next) {
   yield setTimeout(next, 0)
   throw new Error('boom')
-}))
+})
 
 app.get('/689', wrap(function * (next, req, res) {
   next(new Error('169'))
   yield setTimeout(next, 0)
 }, { prepend: true }))
 
-app.use(wrapPrepend(function * (next, err, req, res) {
+app.use(wrap(function * (next, err, req, res) {
   res.status(500)
   res.json({ success: false, message: err.message })
-}))
+}, { prepend: true }))
 
 test('middleware next', function (t) {
   request(app)

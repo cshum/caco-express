@@ -13,10 +13,13 @@
   "license": "MIT",
   "devDependencies": {
     "express": "^4.13.4",
-    "raco": "^3.2.0",
     "standard": "^6.0.8",
     "supertest": "^1.2.0",
     "tape": "^3.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "array-flatten": "^2.1.0",
+    "methods": "^1.1.2",
+    "raco": "^3.2.0"
+  }
 }

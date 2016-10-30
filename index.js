@@ -16,10 +16,12 @@ function isGeneratorFunction (val) {
 function isExpress (val) {
   return val && isFunction(val.all) && isFunction(val.post) && isFunction(val.get)
 }
-function wrapMethod (fn) {
+function wrapMethod (fn, opts) {
   return function () {
-    var args = flatten(Array.prototype.slice.call(arguments)).map(wrap)
-    return wrap(fn.apply(this, args))
+    var args = flatten(Array.prototype.slice.call(arguments)).map(function (fn) {
+      return wrap(fn, opts)
+    })
+    return wrap(fn.apply(this, args), opts)
   }
 }
 
@@ -53,10 +55,10 @@ function wrap (app, opts) {
     app._racoWrapped = true
     // app is express object
     methods.forEach(function (method) {
-      if (isFunction(app[method])) app[method] = wrapMethod(app[method])
+      if (isFunction(app[method])) app[method] = wrapMethod(app[method], opts)
     })
     ;['route', 'use', 'all', 'del'].forEach(function (method) {
-      if (isFunction(app[method])) app[method] = wrapMethod(app[method])
+      if (isFunction(app[method])) app[method] = wrapMethod(app[method], opts)
     })
   }
   return app

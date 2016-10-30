@@ -49,7 +49,8 @@ function wrap (app, opts) {
         })
       }
     }
-  } else if (isExpress(app) && !app._raco) {
+  } else if (isExpress(app) && !app._racoWrapped) {
+    app._racoWrapped = true
     // app is express object
     methods.forEach(function (method) {
       if (isFunction(app[method])) app[method] = wrapMethod(app[method])
@@ -57,7 +58,6 @@ function wrap (app, opts) {
     ;['route', 'use', 'all', 'del'].forEach(function (method) {
       if (isFunction(app[method])) app[method] = wrapMethod(app[method])
     })
-    app._raco = true
   }
   return app
 }
